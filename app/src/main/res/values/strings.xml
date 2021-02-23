@@ -34,8 +34,8 @@
     <string name="add_a_flight">Add A Flight</string>
     <string name="delete_a_flight">Delete A Flight</string>
     <string-array name="class_flight">
-    <item>Economy Class</item>
-    <item>Business Class</item>
-    <item>First Class</item>
+        <item>Economy Class</item>
+        <item>Business Class</item>
+        <item>First Class</item>
     </string-array>
 </resources>
