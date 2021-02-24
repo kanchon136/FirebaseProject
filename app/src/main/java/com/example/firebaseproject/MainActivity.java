@@ -42,7 +42,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         b5= findViewById(R.id.button_5);
         b6 = findViewById(R.id.button_6);
         b7 = findViewById(R.id.button_7);
-        b8 = findViewById(R.id.button_9);
+        b8 = findViewById(R.id.button_8);
+        b9 = findViewById(R.id.button_9);
         b0 = findViewById(R.id.button_0);
         backspace = findViewById(R.id.backspace);
         enter = findViewById(R.id.enter_button);
