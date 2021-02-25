@@ -3,6 +3,7 @@ package com.example.firebaseproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.CalendarView;
 import android.widget.TextView;
@@ -37,8 +38,14 @@ public class Showing_Flights extends AppCompatActivity {
                 int selYear = Integer.parseInt(selected_date.substring(selected_date.indexOf("/")+1));
 
 
+
             }
         });
+    }
+
+    public boolean isCorrectDate(int day, int month, int year){
+        String currDate = (String) Date.format("dd-MM-yyyy",new java.util.Date());
+        return false;
     }
 
 }
