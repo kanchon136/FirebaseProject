@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.FirebaseProject">
-        <activity android:name=".Get_Flight_Ticket"></activity>
+        <activity android:name=".Delete_Flight"></activity>
+        <activity android:name=".FlightDetails" />
+        <activity android:name=".Get_Flight_Ticket" />
         <activity android:name=".Delete_Flight_Ticket" />
         <activity android:name=".Showing_Flights" />
         <activity android:name=".Menu" />
