@@ -1,17 +1,28 @@
 package com.example.firebaseproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Telephony;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FlightDetails extends AppCompatActivity implements View.OnClickListener {
-    private FirebaseDatabase db = FirebaseDatabase.getInstance();
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DocumentReference flightRef;
 
     
 
@@ -73,10 +84,42 @@ public class FlightDetails extends AppCompatActivity implements View.OnClickList
             Integer.parseInt(info.getDuration());
             Integer.parseInt(info.getFliht_name());
             Integer.parseInt(info.getPrice());
+            String Date = Integer.parseInt(info.getDay())+"."+Integer.parseInt(info.getMonth())+"."+Integer.parseInt(info.getYear());
+            flightRef = db.collection(Date).document(info.getFliht_name());
+            Map<String, Object> map = new HashMap<>();
+            map.put("name",info.getFliht_name());
+            map.put("from",info.getFrom());
+            map.put("to",info.getTo());
+            map.put("day",info.getDay());
+            map.put("month",info.getMonth());
+            map.put("month",info.getYear());
+            map.put("dep_time",info.getDep_time());
+            map.put("land_time",info.getLan_time());
+            map.put("duration",info.getDuration());
+            map.put("price",info.getPrice());
+            map.put("status", "Avail");
+            for (int i=1; i<20;i++){
+                map.put((i+ ""), "0");
+            }
+            flightRef.set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(FlightDetails.this, "Flight added Successfully",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(FlightDetails.this, Flight_Management_Admin.class);
+                    startActivity(intent);
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(FlightDetails.this, "Failed To Add Flight"+ e.toString(), Toast.LENGTH_LONG).show();
+                }
+            });
+
 
         }catch (Exception e){
-
+    Toast.makeText(FlightDetails.this, "Enter the Details Correctly", Toast.LENGTH_LONG).show();
         }
+        // some codding are due;
 
     }
 }
